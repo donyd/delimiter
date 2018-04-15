@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import *
+import pyperclip
 
 
 class App:
@@ -16,17 +17,37 @@ class App:
         self.linearLbl = tk.Label(text="Out: CSV")
         self.linearLbl.grid(column=1, row=0)
 
+        # Paste
+        def leftpaste(event):
+            self.colOne.insert(END, pyperclip.paste())
+
+        # Clear
+        def clear():
+            self.colOne.delete('1.0', END)
+
         # Text Area Boxes
         self.colOne = tk.Text(self.master, height=25, width=40)
+        self.colOne.bind("<Button-1>", leftpaste)
         self.colOne.grid(column=0, row=1)
 
         self.colTwo = tk.Text(self.master, height=25, width=40)
         self.colTwo.grid(column=1, row=1)
 
+        # Convert function
+        def convert():
+            temp = self.colOne.get('1.0', END)
+            self.colTwo.delete('1.0', END)
+            self.colTwo.insert(END, temp)
+
+
         # Buttons
-        self.btnConvert = Button(self.master, text="Convert")
+        self.btnClear = Button(self.master, text="Clear", command=clear)
+        self.btnClear.grid(column=0, row=2)
+
+        self.btnConvert = Button(self.master, text="Convert", command=convert)
+        self.btnConvert.grid(column=1, row=2)
 
         self.master.mainloop()
 
 
-App()
+myApp = App()

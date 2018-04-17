@@ -35,14 +35,23 @@ class App:
 
         # Convert function
         def convert():
-            temp = self.colOne.get('1.0', END)
+            temp = self.colOne.get('1.0', 'end-1c').split('\n')
+            print(temp)
+            print(len(temp))
+            length = len(temp) - 1
+            newstr = ''
+            for i in range(length):
+                newstr += temp[i] + ', '
+
+            #temp = self.colOne.get('1.0', END)
             self.colTwo.delete('1.0', END)
-            self.colTwo.insert(END, temp)
+            self.colTwo.insert(END, newstr)
 
 
         # Buttons
-        self.btnClear = Button(self.master, text="Clear", command=clear)
+        self.btnClear = Button(self.master, text="Clear", command=clear())
         self.btnClear.grid(column=0, row=2)
+
 
         self.btnConvert = Button(self.master, text="Convert", command=convert)
         self.btnConvert.grid(column=1, row=2)

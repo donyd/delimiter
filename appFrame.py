@@ -37,26 +37,23 @@ class App:
 
         # Convert function
         def convert():
-            self.colTwo.delete('1.0')
-            temp = self.colOne.get('1.0', 'end-1c').split('\n')
-            # temp = self.colOne.get('1.0', END)
+            self.colTwo.delete('1.0', END)
+            self.lstStr = ''
+            temp = self.colOne.get('1.0', END).split('\r\n')
+            # temp = self.colOne.get('1.0', 'end-1c')
             print(temp)
             print(len(temp))
-            length = len(temp)
-            # for i in range(length):
-            #     self.csv.append(temp[i] + ', ')
+            length = len(temp) - 1
 
             for i in range(length):
                 self.lstStr += temp[i] + ', '
 
             self.lstStr = self.lstStr.lstrip(', ')
-            print(self.lstStr)
+
             self.lstStr = self.lstStr.strip()
-            print(self.lstStr)
+
             self.colTwo.insert(END, self.lstStr.rstrip(', '))
             print(self.lstStr)
-
-
 
 
         # Buttons

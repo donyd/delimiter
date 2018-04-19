@@ -9,6 +9,8 @@ class App:
         # Main Frame Creation
         self.master = Tk()
         self.master.title("Delimiter Prototype")
+        self.csv = []
+        self.lstStr = '';
 
         # Labels & Placement
         self.columnarLbl = tk.Label(text="In: Column ")
@@ -35,21 +37,30 @@ class App:
 
         # Convert function
         def convert():
+            self.colTwo.delete('1.0')
             temp = self.colOne.get('1.0', 'end-1c').split('\n')
+            # temp = self.colOne.get('1.0', END)
             print(temp)
             print(len(temp))
-            length = len(temp) - 1
-            newstr = ''
-            for i in range(length):
-                newstr += temp[i] + ', '
+            length = len(temp)
+            # for i in range(length):
+            #     self.csv.append(temp[i] + ', ')
 
-            #temp = self.colOne.get('1.0', END)
-            self.colTwo.delete('1.0', END)
-            self.colTwo.insert(END, newstr)
+            for i in range(length):
+                self.lstStr += temp[i] + ', '
+
+            self.lstStr = self.lstStr.lstrip(', ')
+            print(self.lstStr)
+            self.lstStr = self.lstStr.strip()
+            print(self.lstStr)
+            self.colTwo.insert(END, self.lstStr.rstrip(', '))
+            print(self.lstStr)
+
+
 
 
         # Buttons
-        self.btnClear = Button(self.master, text="Clear", command=clear())
+        self.btnClear = Button(self.master, text="Clear", command=clear)
         self.btnClear.grid(column=0, row=2)
 
 

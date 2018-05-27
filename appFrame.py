@@ -50,21 +50,20 @@ class App:
             # Clear memory on each session
             self.lstStr = ''
 
-            temp = self.colOne.get('1.0', END).split('\r\n')
-            # temp = self.colOne.get('1.0', 'end-1c')
-            print(temp)
+            temp = self.colOne.get('1.0', END).split('\n')
 
             temp = list(filter(listChecker, temp))
             print('Post invalid item check')
             print(temp)
 
+
             for i in range(len(temp)):
                 self.lstStr += temp[i] + ', '
 
+            # temp = self.colOne.get('1.0', END)
 
             self.lstStr = self.lstStr.rstrip('\n')
             self.lstStr = self.lstStr.rstrip(' ,')
-
             self.colTwo.insert(END, self.lstStr)
 
         # Filter Function

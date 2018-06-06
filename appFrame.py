@@ -52,7 +52,7 @@ class App:
 
             temp = self.colOne.get('1.0', END).split('\n')
 
-            temp = list(filter(listChecker, temp))
+            temp = list(map(lambda x: x.rstrip('\r'), temp))
             print('Post invalid item check')
             print(temp)
 
@@ -60,20 +60,11 @@ class App:
             for i in range(len(temp)):
                 self.lstStr += temp[i] + ', '
 
-            # temp = self.colOne.get('1.0', END)
 
             self.lstStr = self.lstStr.rstrip('\n')
             self.lstStr = self.lstStr.rstrip(' ,')
             self.colTwo.insert(END, self.lstStr)
 
-        # Filter Function
-        def listChecker(list):
-            invalidItems = ['\n', '', ' ']
-
-            if(list in invalidItems):
-                return False
-            else:
-                return True
 
         # Buttons
         self.btnColumnar = Button(self.master, text="Columnar Data")
